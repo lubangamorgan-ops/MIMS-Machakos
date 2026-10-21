@@ -108,13 +108,20 @@ public class AccountService {
     @Transactional
     public Farmer updateFarmerProfile(Farmer farmer, String username, String email, String phone, Market market,
                                       byte[] profileImage) {
+        return updateFarmerProfile(farmer, username, email, phone, market, profileImage, false);
+    }
+
+    @Transactional
+    public Farmer updateFarmerProfile(Farmer farmer, String username, String email, String phone, Market market,
+                                      byte[] profileImage, boolean removeProfileImage) {
         if (farmer == null || farmer.getAccount() == null
                 || !FARMER_ROLE.equals(farmer.getAccount().getRole())) {
             throw new IllegalArgumentException("Farmer account not found.");
         }
         String normalizedUsername = normalizeUsername(username);
         String normalizedEmail = normalizeEmail(email);
-        ValidatedProfileImage validatedImage = profileImage == null ? null : validateProfileImage(profileImage);
+        ValidatedProfileImage validatedImage = profileImage == null || removeProfileImage
+                ? null : validateProfileImage(profileImage);
         if (market == null) {
             throw new IllegalArgumentException("Please select a market.");
         }
@@ -132,7 +139,10 @@ public class AccountService {
         farmer.setName(normalizedUsername);
         farmer.setPhone(phone == null || phone.isBlank() ? null : phone.trim());
         farmer.setMarket(market);
-        if (validatedImage != null) {
+        if (removeProfileImage) {
+            farmer.setProfileImage(null);
+            farmer.setProfileImageContentType(null);
+        } else if (validatedImage != null) {
             farmer.setProfileImage(validatedImage.data());
             farmer.setProfileImageContentType(validatedImage.contentType());
         }

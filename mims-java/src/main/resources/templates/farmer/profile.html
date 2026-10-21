@@ -21,13 +21,17 @@
         <div class="profile-photo-section">
           <div class="profile-photo-frame">
             <img class="profile-photo" th:if="${hasProfilePhoto}" src="/farmer/profile/photo" alt="Your profile picture">
-            <span class="profile-photo-placeholder" th:unless="${hasProfilePhoto}" th:text="${initials}">F</span>
+            <img class="profile-photo profile-photo-default" th:unless="${hasProfilePhoto}"
+                 th:src="@{/images/default-profile.svg}" alt="Default profile picture">
           </div>
           <div>
             <label class="profile-photo-label" for="profile-photo">Profile picture</label>
             <input class="profile-photo-input" id="profile-photo" type="file" name="profilePhoto"
                    accept="image/jpeg,image/png,image/gif">
-            <label class="small-btn profile-photo-button" for="profile-photo">Choose picture</label>
+            <label class="small-btn profile-photo-button" for="profile-photo"
+                   th:text="${hasProfilePhoto} ? 'Change picture' : 'Add picture'">Add picture</label>
+            <button class="small-btn danger profile-photo-remove" type="submit" name="removeProfilePhoto" value="true"
+                    th:if="${hasProfilePhoto}">Remove picture</button>
             <p class="profile-photo-help">JPEG, PNG, or GIF; maximum size 1 MB.</p>
           </div>
         </div>

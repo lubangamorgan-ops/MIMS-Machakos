@@ -7,7 +7,7 @@
   <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-<div class="landing">
+<div class="landing landing-home">
   <div class="landing-nav">
     <div class="brand">
       <div class="brand-mark">MF</div>
@@ -42,7 +42,6 @@
         </span>
         <span class="ticker-price" th:text="'Ksh ' + ${#numbers.formatDecimal(p.price,0,'COMMA',2,'POINT')} + ' / ' + ${p.crop.unit}">price</span>
       </div>
-      <div class="ticker-foot">Updated automatically the moment staff post a new price · no duplicates, no stale figures</div>
     </div>
   </div>
 

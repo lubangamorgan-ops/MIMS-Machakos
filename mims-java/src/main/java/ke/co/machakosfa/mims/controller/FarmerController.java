@@ -149,7 +149,6 @@ public class FarmerController {
         Farmer farmer = farmerService.findById((Long) session.getAttribute("farmerId"));
         model.addAttribute("farmer", farmer);
         model.addAttribute("hasProfilePhoto", farmer.getProfileImage() != null);
-        model.addAttribute("initials", farmer.getName().substring(0, 1).toUpperCase());
         return "fragments/farmer-profile-summary :: content";
     }
 
@@ -174,6 +173,7 @@ public class FarmerController {
                                 @RequestParam(required = false) String phone,
                                 @RequestParam Long marketId,
                                 @RequestParam(required = false) MultipartFile profilePhoto,
+                                @RequestParam(defaultValue = "false") boolean removeProfilePhoto,
                                 Model model, HttpSession session) {
         String guard = requireFarmer(session);
         if (guard != null) return guard;
@@ -182,10 +182,13 @@ public class FarmerController {
         try {
             byte[] imageData = profilePhoto == null || profilePhoto.isEmpty() ? null : profilePhoto.getBytes();
             Farmer updatedFarmer = accountService.updateFarmerProfile(
-                    farmer, username, email, phone, marketService.findById(marketId), imageData);
+                    farmer, username, email, phone, marketService.findById(marketId), imageData,
+                    removeProfilePhoto);
             session.setAttribute("name", updatedFarmer.getName());
             session.setAttribute("marketId", updatedFarmer.getMarket().getId());
-            model.addAttribute("success", "Your account details have been updated.");
+            model.addAttribute("success", removeProfilePhoto
+                    ? "Your account details have been updated and your profile picture removed."
+                    : "Your account details have been updated.");
             populateProfileModel(model, updatedFarmer, updatedFarmer.getName(),
                     updatedFarmer.getAccount().getEmail(), updatedFarmer.getPhone(),
                     updatedFarmer.getMarket().getId());
@@ -203,7 +206,6 @@ public class FarmerController {
         model.addAttribute("email", email);
         model.addAttribute("phone", phone);
         model.addAttribute("hasProfilePhoto", farmer.getProfileImage() != null);
-        model.addAttribute("initials", farmer.getName().substring(0, 1).toUpperCase());
         model.addAttribute("selectedMarketId", marketId);
         model.addAttribute("markets", marketService.findAll());
     }

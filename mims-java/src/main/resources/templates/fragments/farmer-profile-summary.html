@@ -3,7 +3,8 @@
     <h2 id="farmer-profile-title">My profile</h2>
     <div class="profile-photo-frame profile-photo-frame-popup">
       <img class="profile-photo" th:if="${hasProfilePhoto}" src="/farmer/profile/photo" alt="Your profile picture">
-      <span class="profile-photo-placeholder" th:unless="${hasProfilePhoto}" th:text="${initials}">F</span>
+      <img class="profile-photo profile-photo-default" th:unless="${hasProfilePhoto}"
+           th:src="@{/images/default-profile.svg}" alt="Default profile picture">
     </div>
     <dl class="profile-summary-details">
       <div><dt>Username</dt><dd th:text="${farmer.account.username}">username</dd></div>

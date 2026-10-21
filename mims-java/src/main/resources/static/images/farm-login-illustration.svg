@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Farmers working in Machakos</title>
+  <desc id="desc">An original illustration of farmers harvesting vegetables in terraced green fields beneath a bright sky.</desc>
+  <defs>
+    <linearGradient id="sky" x2="0" y2="1">
+      <stop stop-color="#94c8dd"/>
+      <stop offset="1" stop-color="#e5d79b"/>
+    </linearGradient>
+    <linearGradient id="hill" x2="0" y2="1">
+      <stop stop-color="#668d55"/>
+      <stop offset="1" stop-color="#274b35"/>
+    </linearGradient>
+    <linearGradient id="soil" x2="0" y2="1">
+      <stop stop-color="#8c673a"/>
+      <stop offset="1" stop-color="#533d2d"/>
+    </linearGradient>
+    <linearGradient id="shirt" x2="0" y2="1">
+      <stop stop-color="#f4eee0"/>
+      <stop offset="1" stop-color="#c8d2c0"/>
+    </linearGradient>
+    <pattern id="rows" width="92" height="48" patternUnits="userSpaceOnUse" patternTransform="skewY(-12)">
+      <path d="M0 8 Q46 0 92 8 M0 23 Q46 15 92 23 M0 38 Q46 30 92 38" fill="none" stroke="#b1b76a" stroke-width="5" opacity=".65"/>
+      <path d="M0 14 Q46 6 92 14 M0 29 Q46 21 92 29 M0 44 Q46 36 92 44" fill="none" stroke="#274b35" stroke-width="4" opacity=".7"/>
+    </pattern>
+    <filter id="soft">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+  <path fill="url(#sky)" d="M0 0h900v500H0z"/>
+  <circle cx="704" cy="180" r="75" fill="#f4d482" opacity=".8"/>
+  <path fill="#8cae8a" d="M0 348 117 263l95 65 142-153 135 152 133-125 113 115 92-82 73 80v250H0z"/>
+  <path fill="#52754d" d="M0 430q131-107 253-38t252 2 220-1 175 33v241H0z"/>
+  <path fill="url(#hill)" d="M0 503q171-108 338-22t264-2q165-98 298-19v740H0z"/>
+  <path fill="url(#rows)" d="M0 466q176-92 352-2t282 3q143-75 266-34v767H0z"/>
+  <path fill="#b49a5c" opacity=".7" d="M0 586q194-100 405-8t495-19v42q-293 90-511 3T0 628z"/>
+  <path fill="#a7844b" opacity=".72" d="M0 755q228-91 460 1t440-21v43q-245 92-481 1T0 798z"/>
+  <path fill="url(#soil)" d="M0 914q189-105 398-19t502-44v349H0z"/>
+  <path fill="url(#rows)" d="M0 886q193-105 411-17t489-41v372H0z" opacity=".92"/>
+  <ellipse cx="454" cy="1064" rx="365" ry="90" fill="#182d25" opacity=".34" filter="url(#soft)"/>
+  <g transform="translate(105 388)">
+    <path fill="#9c3c38" d="M100 40q55-54 110-2l-5 35H98z"/>
+    <path fill="#c95a47" d="M105 32q50-39 101 2l-6 12q-48-25-92 3z"/>
+    <ellipse cx="155" cy="100" rx="45" ry="58" fill="#754c36"/>
+    <path fill="#63432f" d="M112 91q8-65 72-49 25 8 26 35-39-14-98 14"/>
+    <path fill="url(#shirt)" d="M86 163q66-40 132 0l53 232-232 6z"/>
+    <path fill="#68835b" d="m98 186 68 53-72 132-34-17z"/>
+    <path fill="#d7d5be" d="m205 183 51 32-76 106-35-22z"/>
+    <path fill="#754c36" d="m139 386-18 174 53 9 38-183zm80 0 26 163 52-9-25-162z"/>
+    <path fill="#4e392d" d="M121 553h67l-3 22h-78zm117-6 65-8 8 20-68 13z"/>
+    <path fill="#754c36" d="m57 350-74 91 25 25 95-73zm190-116 105 82-22 32-121-71z"/>
+    <path fill="#6d9250" d="M-15 449q35-58 70-9-35 50-70 9m37 16q34-59 72-8-39 52-72 8m97-66q34-59 73-8-39 51-73 8"/>
+  </g>
+  <g transform="translate(584 600) scale(.78)">
+    <path fill="#af473d" d="M90 38q58-53 112-3l-5 34H91z"/>
+    <path fill="#d06a4a" d="M98 30q45-40 96 0l-5 14q-44-24-89 4z"/>
+    <ellipse cx="150" cy="97" rx="43" ry="55" fill="#694632"/>
+    <path fill="#553b2d" d="M110 93q4-62 65-50 25 6 28 35-42-14-93 15"/>
+    <path fill="#d7b877" d="M89 158q62-38 124 0l38 186-207 4z"/>
+    <path fill="#d38e49" d="m105 177 71 72-62 100-44-28z"/>
+    <path fill="#536c4b" d="m174 181 54-4 43 125-37 24z"/>
+    <path fill="#694632" d="m112 341-20 137 48 5 38-142zm79 0 25 132 48-7-22-128z"/>
+    <path fill="#47372d" d="M89 473h57v20H81zm126-4 57-8 8 20-60 13z"/>
+  </g>
+  <g transform="translate(14 898)">
+    <path fill="#573f2c" d="M0 75Q145 10 291 75v106H0z"/>
+    <path fill="#b47d45" d="M0 70q145-66 291 0l-12 28q-132-52-267 0z"/>
+    <path fill="#744b2e" d="M17 92q128-51 257 0v82H17z"/>
+    <g fill="#d35438">
+      <circle cx="58" cy="110" r="24"/><circle cx="111" cy="129" r="25"/><circle cx="165" cy="105" r="23"/>
+      <circle cx="218" cy="132" r="24"/><circle cx="83" cy="163" r="21"/><circle cx="181" cy="163" r="21"/>
+    </g>
+    <g fill="#6e9c4a">
+      <path d="M55 91q-20-33-42-8 19 16 42 8m111-9q8-31 33-25-8 24-33 25m49 22q13-31 38-20-12 22-38 20"/>
+    </g>
+  </g>
+  <g fill="#f1ca73" opacity=".75">
+    <circle cx="778" cy="520" r="5"/><circle cx="802" cy="547" r="4"/><circle cx="746" cy="554" r="5"/>
+    <circle cx="314" cy="294" r="4"/><circle cx="344" cy="313" r="5"/><circle cx="280" cy="324" r="4"/>
+  </g>
+  <path fill="#0e2a44" opacity=".12" d="M0 0h900v1200H0z"/>
+</svg>
