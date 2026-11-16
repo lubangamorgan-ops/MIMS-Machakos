@@ -17,18 +17,17 @@
     <div class="card">
       <h3>Post a price</h3>
 
-      <div class="alert alert-good" th:if="${success}" th:text="${success}"></div>
-      <div class="alert alert-error" th:if="${error}" th:text="${error}"></div>
+      <div th:replace="~{fragments/flash :: flash}"></div>
 
-      <div class="alert alert-error" th:if="${duplicateError}">
-        <span th:text="${duplicateError}">duplicate message</span><br>
-        <form th:action="@{/admin/prices}" method="post" style="margin-top:8px;">
+      <div class="alert alert-error" th:if="${dupPrice != null}">
+        <p class="alert-text">Would you like to replace the price already on the board with this one?</p>
+        <form th:action="@{/admin/prices}" method="post" class="inline-form">
           <input type="hidden" name="cropId" th:value="${dupCropId}">
           <input type="hidden" name="marketId" th:value="${dupMarketId}">
           <input type="hidden" name="price" th:value="${dupPrice}">
           <input type="hidden" name="priceDate" th:value="${dupDate}">
           <input type="hidden" name="replaceExisting" value="true">
-          <button class="small-btn" type="submit" th:text="'Replace the existing record with Ksh ' + ${dupPrice} + ' instead'">Replace existing</button>
+          <button class="small-btn" type="submit" th:text="'Replace it with Ksh ' + ${dupPrice}">Replace it</button>
         </form>
       </div>
 
@@ -47,7 +46,7 @@
           <div><label>Price (Ksh)</label><input type="number" name="price" min="0" step="0.01" placeholder="e.g. 120" required></div>
         </div>
         <div class="grid-3" style="margin-top:14px;">
-          <div><label for="price-date">Date</label><input id="price-date" class="date-picker" type="date" name="priceDate" th:value="${today}" required></div>
+          <div><label for="price-date">Date</label><input id="price-date" class="date-picker" type="date" name="priceDate" th:value="${today}" th:max="${today}" required></div>
           <div style="grid-column: span 2; display:flex;align-items:flex-end;">
             <button class="btn btn-primary" style="width:100%;" type="submit">Validate &amp; post price</button>
           </div>

@@ -21,6 +21,12 @@
       <div class="stat-card"><div class="n" th:text="${todayCount}">0</div><div class="l">Prices posted today</div></div>
     </div>
 
+    <div class="card prompt-card" th:if="${todayCount == 0}">
+      <h3>No prices have been posted today</h3>
+      <div class="card-sub">Farmers see the board as soon as a price is saved. Post today's prices to keep them informed.</div>
+      <a class="btn btn-primary" href="/admin/prices">Post today's prices</a>
+    </div>
+
     <div class="card">
       <h3>Recent price activity</h3>
       <div class="card-sub">Latest entries across all markets, most recent first.</div>

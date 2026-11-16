@@ -1,6 +1,8 @@
 <div xmlns:th="http://www.thymeleaf.org" th:fragment="nav(active)" class="sidebar">
   <div class="brand">
-    <div class="brand-mark">MF</div>
+    <div class="brand-mark farmer-brand-mark">
+      <img th:src="@{/images/default-profile.svg}" alt="">
+    </div>
     <div><div class="brand-name">MIMS</div><div class="brand-sub">Machakos F.A.</div></div>
   </div>
   <a class="nav-item" th:classappend="${active == 'lookup'} ? 'active' : ''" href="/farmer/dashboard">Price Lookup</a>

@@ -21,6 +21,8 @@ Then open [http://localhost:8080](http://localhost:8080).
 
 You can also open the `mims-java` folder as a Maven project in IntelliJ IDEA, Eclipse, or VS Code and run `MimsApplication.java`.
 
+When opening the repository root in VS Code, choose **Run and Debug → Launch MIMS Application** (or press F5 with that profile selected). The profile runs from `mims-java` so the H2 database stays in the expected location. Stop any existing app instance first if port 8080 is already in use.
+
 ## Database
 
 The application uses a file-based H2 database by default; no separate database setup is needed. Data is stored in `mims-java/data/` and persists between restarts.
@@ -29,7 +31,22 @@ While the application is running, the H2 console is available at [http://localho
 
 The `.mv.db` file is an H2 database, not SQLite. Do not open it with a SQLite connection or point a saved connection at a previous project location; use the H2 console settings above.
 
-To switch to MySQL, uncomment the MySQL dependency in `mims-java/pom.xml`, then update the database settings in `mims-java/src/main/resources/application.properties`. Configure credentials outside source control before using the application with a non-local database.
+For deployment, the database URL, username, and password are configurable through `DATABASE_URL`, `DB_USERNAME`, and `DB_PASSWORD`. PostgreSQL is supported by the included JDBC driver. Use a PostgreSQL JDBC URL (`jdbc:postgresql://...`) and set the matching credentials as environment variables. Avoid using the default H2 file database on hosts without persistent storage.
+
+## Deploy to Render with Docker
+
+The Dockerfile is in `mims-java/`, beside the Maven `pom.xml`. In Render, create a **Web Service** from this GitHub repository and select **Docker** as the runtime. Set the service's **Root Directory** to `mims-java`.
+
+Render should build the service from `mims-java/Dockerfile`. Add these environment variables in the Render dashboard:
+
+- `DATABASE_URL`: PostgreSQL JDBC URL, for example `jdbc:postgresql://<host>:5432/<database>`
+- `DB_USERNAME` and `DB_PASSWORD`: credentials for that PostgreSQL database
+- `H2_CONSOLE_ENABLED`: `false`
+- `THYMELEAF_CACHE`: `true`
+- `MIMS_PUBLIC_BASE_URL`: the public HTTPS URL for the deployed service
+- `MIMS_ADMIN_USERNAME`, `MIMS_ADMIN_EMAIL`, and `MIMS_ADMIN_PASSWORD`: initial administrator credentials (password must be at least 12 characters)
+
+The app reads Render's assigned port through `PORT`. Configure SMTP environment variables (`SMTP_HOST`, `SMTP_PORT`, `SMTP_USERNAME`, `SMTP_PASSWORD`, and `MIMS_MAIL_FROM`) if password-recovery email delivery is needed. Keep credentials and other secrets in Render's environment settings, not in source control.
 
 ## Accounts and password recovery
 
@@ -58,6 +75,10 @@ If SMTP is not configured, the recovery form reports that email delivery is unav
 1. On the landing page, choose **Administrator sign in** to manage crops, markets, prices, farmers, and broadcasts.
 2. Choose **Look up today's prices** to access the farmer price lookup, trends, and alerts.
 3. Administrators can test duplicate-price validation by entering the same crop, market, and date more than once.
+
+## What's new in version 3
+
+See `CHANGELOG.md`. Administrators now see a clear message after every action, cannot resubmit a form by refreshing the page, confirm before removing records, and are prompted to post today's prices when none have been entered.
 
 ## Project structure
 

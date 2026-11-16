@@ -16,7 +16,7 @@
 
     <div class="card">
       <h3>Add a crop category</h3>
-      <div class="alert alert-error" th:if="${error}" th:text="${error}"></div>
+      <div th:replace="~{fragments/flash :: flash}"></div>
       <form th:action="@{/admin/crops}" method="post" class="grid-3">
         <div><label>Crop name</label><input type="text" name="name" placeholder="e.g. Sorghum" required></div>
         <div><label>Reporting unit</label><input type="text" name="unit" placeholder="e.g. kg, 90kg bag" required></div>
@@ -34,7 +34,7 @@
             <td th:text="${c.name}">Crop</td>
             <td class="mono" th:text="${c.unit}">unit</td>
             <td>
-              <form th:action="@{'/admin/crops/' + ${c.id} + '/delete'}" method="post">
+              <form th:action="@{'/admin/crops/' + ${c.id} + '/delete'}" method="post" onsubmit="return confirm('Remove this crop? Its price history stays, but it cannot be used for new prices.');">
                 <button class="small-btn danger" type="submit">Remove</button>
               </form>
             </td>

@@ -7,40 +7,54 @@
   <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-<div class="auth-wrap">
-  <div class="auth-card">
-    <div class="brand">
-      <div class="brand-mark">MF</div>
-      <div><div class="brand-name">Create farmer account</div><div class="brand-sub">Machakos Farmers Association</div></div>
+<div class="login-shell signup-shell">
+  <main class="login-panel signup-panel">
+    <div class="login-form-wrap signup-form-wrap">
+      <h1>Create a farmer account</h1>
+      <p class="login-intro">Join MIMS to receive market updates and keep your farming records close at hand.</p>
+
+      <p class="form-message form-error" th:if="${error}" th:text="${error}"></p>
+
+      <form th:action="@{/signup}" method="post">
+        <label for="username">Username</label>
+        <input id="username" type="text" name="username" minlength="3" maxlength="32" pattern="[-A-Za-z0-9._]{3,32}" autocomplete="username" required>
+
+        <label for="email">Email</label>
+        <input id="email" type="email" name="email" maxlength="254" autocomplete="email" required>
+
+        <label for="password">Password</label>
+        <div class="password-field">
+          <input id="password" type="password" name="password" minlength="8" maxlength="72" autocomplete="new-password" required>
+          <button class="password-toggle" type="button" data-toggle-password="password" aria-label="Show password" aria-pressed="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+
+        <label for="phone">Phone number</label>
+        <input id="phone" type="tel" name="phone" value="+254" autocomplete="tel">
+
+        <label for="market">Nearest market</label>
+        <select id="market" name="marketId" required>
+          <option value="" selected disabled>Select your market</option>
+          <option th:each="m : ${markets}" th:value="${m.id}" th:text="${m.name}">Market</option>
+        </select>
+
+        <button class="btn btn-primary auth-submit" type="submit">Create account</button>
+        <p class="auth-note">Already registered? <a href="/login?role=farmer">Sign in</a>.</p>
+      </form>
+
+      <a class="auth-back" href="/">&larr; Back to the board</a>
     </div>
+  </main>
 
-    <p class="form-message form-error" th:if="${error}" th:text="${error}"></p>
-
-    <form th:action="@{/signup}" method="post">
-      <label for="username">Username</label>
-      <input id="username" type="text" name="username" minlength="3" maxlength="32" pattern="[-A-Za-z0-9._]{3,32}" autocomplete="username" required>
-      <label for="email">Email</label>
-      <input id="email" type="email" name="email" maxlength="254" autocomplete="email" required>
-      <label for="password">Password</label>
-      <div class="password-field">
-        <input id="password" type="password" name="password" minlength="8" maxlength="72" autocomplete="new-password" required>
-        <button class="password-toggle" type="button" data-toggle-password="password" aria-label="Show password" aria-pressed="false">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
-        </button>
-      </div>
-      <label for="phone">Phone number</label>
-      <input id="phone" type="tel" name="phone" value="+254" autocomplete="tel">
-      <label for="market">Nearest market</label>
-      <select id="market" name="marketId" required>
-        <option value="" selected disabled>Select your market</option>
-        <option th:each="m : ${markets}" th:value="${m.id}" th:text="${m.name}">Market</option>
-      </select>
-      <button class="btn btn-primary auth-submit" type="submit">Create account</button>
-      <p class="auth-note">Already registered? <a href="/login?role=farmer">Sign in</a>.</p>
-    </form>
-
-    <a class="auth-back" href="/">&larr; Back to the board</a>
-  </div>
+  <section class="login-visual signup-visual" aria-label="About MIMS">
+    <div class="login-visual-card">
+      <a class="login-brand" href="/" aria-label="MIMS home">MIMS</a>
+      <span class="login-card-rule" aria-hidden="true"></span>
+      <p class="login-visual-caption">Reliable market information, grown together.</p>
+      <small class="login-visual-attribution">Machakos Farmers Association</small>
+    </div>
+  </section>
 </div>
 <script>
   document.querySelectorAll("[data-toggle-password]").forEach((button) => {

@@ -16,7 +16,7 @@
 
     <div class="card">
       <h3>Add a market location</h3>
-      <div class="alert alert-error" th:if="${error}" th:text="${error}"></div>
+      <div th:replace="~{fragments/flash :: flash}"></div>
       <form th:action="@{/admin/markets}" method="post" class="grid-3">
         <div><label>Market name</label><input type="text" name="name" placeholder="e.g. Wamunyu Market" required></div>
         <div><label>Location / sub-county</label><input type="text" name="location" placeholder="e.g. Mwala" required></div>
@@ -34,7 +34,7 @@
             <td th:text="${m.name}">Market</td>
             <td th:text="${m.location}">Location</td>
             <td>
-              <form th:action="@{'/admin/markets/' + ${m.id} + '/delete'}" method="post">
+              <form th:action="@{'/admin/markets/' + ${m.id} + '/delete'}" method="post" onsubmit="return confirm('Remove this market location?');">
                 <button class="small-btn danger" type="submit">Remove</button>
               </form>
             </td>

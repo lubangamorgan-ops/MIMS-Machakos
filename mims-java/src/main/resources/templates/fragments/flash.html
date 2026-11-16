@@ -1,0 +1,5 @@
+<th:block xmlns:th="http://www.thymeleaf.org" th:fragment="flash">
+  <div th:if="${flashMessage}" class="alert" role="status"
+       th:classappend="${flashType == 'error'} ? 'alert-error' : 'alert-good'"
+       th:text="${flashMessage}"></div>
+</th:block>

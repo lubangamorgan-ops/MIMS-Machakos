@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Launch MIMS Application",
+      "request": "launch",
+      "mainClass": "ke.co.machakosfa.mims.MimsApplication",
+      "projectName": "mims",
+      "cwd": "${workspaceFolder}/mims-java",
+      "console": "integratedTerminal",
+      "env": {
+        "MIMS_ADMIN_USERNAME": "morgan",
+        "MIMS_ADMIN_EMAIL": "lubangamorgan@gmail.com",
+        "MIMS_ADMIN_PASSWORD": "LUBANGA00@2026"
+      }
+    }
+  ]
+}

@@ -100,6 +100,26 @@ class AccountServiceTest {
     }
 
     @Test
+    void removesProfilePhotoWhenRequested() {
+        Account account = new Account();
+        account.setRole("FARMER");
+        account.setUsername("farmer");
+        account.setEmail("farmer@example.test");
+        Farmer farmer = new Farmer("farmer", null, new Market("Market", "Machakos"));
+        farmer.setAccount(account);
+        farmer.setProfileImage(new byte[]{1, 2, 3});
+        farmer.setProfileImageContentType("image/png");
+        when(farmerRepository.save(any(Farmer.class))).thenAnswer(invocation -> invocation.getArgument(0));
+
+        accountService.updateFarmerProfile(
+                farmer, "farmer", "farmer@example.test", null, farmer.getMarket(), null, true);
+
+        assertNull(farmer.getProfileImage());
+        assertNull(farmer.getProfileImageContentType());
+        verify(farmerRepository).save(farmer);
+    }
+
+    @Test
     void rejectsInvalidProfilePhotoWithoutSavingProfileChanges() {
         Account account = new Account();
         account.setRole("FARMER");

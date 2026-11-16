@@ -7,13 +7,12 @@
   <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-<div class="landing">
+<div class="landing landing-home">
   <div class="landing-nav">
     <div class="brand">
       <div class="brand-mark">MF</div>
       <div><div class="brand-name">Machakos Farmers Association</div><div class="brand-sub">Market Information Management System</div></div>
     </div>
-    <a class="nav-cta" href="/login">Sign in</a>
   </div>
 
   <div class="hero">
@@ -28,6 +27,7 @@
         <a class="btn btn-primary" href="/login?role=farmer">Look up today's prices</a>
         <a class="btn btn-ghost" href="/login?role=admin">Administrator sign in</a>
       </div>
+      <a class="btn btn-ghost hero-sign-in" href="/login">Sign in</a>
     </div>
 
     <div class="ticker-board">
@@ -42,7 +42,6 @@
         </span>
         <span class="ticker-price" th:text="'Ksh ' + ${#numbers.formatDecimal(p.price,0,'COMMA',2,'POINT')} + ' / ' + ${p.crop.unit}">price</span>
       </div>
-      <div class="ticker-foot">Updated automatically the moment staff post a new price · no duplicates, no stale figures</div>
     </div>
   </div>
 
