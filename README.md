@@ -35,9 +35,9 @@ For deployment, the database URL, username, and password are configurable throug
 
 ## Deploy to Render with Docker
 
-The Dockerfile is in `mims-java/`, beside the Maven `pom.xml`. In Render, create a **Web Service** from this GitHub repository and select **Docker** as the runtime. Set the service's **Root Directory** to `mims-java`.
+The repository-root `Dockerfile` builds the Maven project from `mims-java/`. In Render, create a **Web Service** from this GitHub repository and select **Docker** as the runtime. Leave **Root Directory** blank so Render uses the repository root and finds the root Dockerfile.
 
-Render should build the service from `mims-java/Dockerfile`. Add these environment variables in the Render dashboard:
+Render should build the service from `Dockerfile`. Add these environment variables in the Render dashboard:
 
 - `DATABASE_URL`: PostgreSQL JDBC URL, for example `jdbc:postgresql://<host>:5432/<database>`
 - `DB_USERNAME` and `DB_PASSWORD`: credentials for that PostgreSQL database
