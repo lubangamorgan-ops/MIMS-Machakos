@@ -21,6 +21,8 @@ Then open [http://localhost:8080](http://localhost:8080).
 
 You can also open the `mims-java` folder as a Maven project in IntelliJ IDEA, Eclipse, or VS Code and run `MimsApplication.java`.
 
+When opening the repository root in VS Code, choose **Run and Debug → Launch MIMS Application** (or press F5 with that profile selected). The profile runs from `mims-java` so the H2 database stays in the expected location. Stop any existing app instance first if port 8080 is already in use.
+
 ## Database
 
 The application uses a file-based H2 database by default; no separate database setup is needed. Data is stored in `mims-java/data/` and persists between restarts.
@@ -58,6 +60,10 @@ If SMTP is not configured, the recovery form reports that email delivery is unav
 1. On the landing page, choose **Administrator sign in** to manage crops, markets, prices, farmers, and broadcasts.
 2. Choose **Look up today's prices** to access the farmer price lookup, trends, and alerts.
 3. Administrators can test duplicate-price validation by entering the same crop, market, and date more than once.
+
+## What's new in version 3
+
+See `CHANGELOG.md`. Administrators now see a clear message after every action, cannot resubmit a form by refreshing the page, confirm before removing records, and are prompted to post today's prices when none have been entered.
 
 ## Project structure
 

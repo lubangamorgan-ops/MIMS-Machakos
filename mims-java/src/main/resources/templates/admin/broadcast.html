@@ -18,7 +18,7 @@
       <h3>Dispatch today's board</h3>
       <div class="card-sub" th:text="${#lists.size(todayPrices)} + ' price record(s) posted today · ' + ${farmerCount} + ' farmer(s) will receive this alert.'">summary</div>
 
-      <div class="alert alert-good" th:if="${success}" th:text="${success}"></div>
+      <div th:replace="~{fragments/flash :: flash}"></div>
 
       <div th:if="${!#lists.isEmpty(todayPrices)}">
         <table>
